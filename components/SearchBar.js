@@ -46,7 +46,7 @@ export default function SearchBar() {
             <AntDesign
               name='clockcircle'
               size={12}
-              style={{ marginRight: 7 }}
+              style={{ marginRight: 7, color: '#38b000' }}
             />
             <Text>search</Text>
           </View>
