@@ -1,15 +1,29 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 
-const image = 'https://bit.ly/3q3LR8K'
-const title = 'Thai cusine kitchen'
-const description = 'Thai Confort food $$ (568+)'
+// const yelpRestaurantInfo = {
+//   name: 'Thai cusine kitchen',
+//   image: 'https://bit.ly/3q3LR8K',
+//   price: '$$',
+//   reviews: '1500',
+//   rating: 5,
+//   categories: [{ title: 'Thai' }, { title: 'Comfort Food' }],
+// }
 
-export default function About() {
+// const image = 'https://bit.ly/3q3LR8K'
+// const title = 'Thai cusine kitchen'
+// const description = 'Thai Confort food $$ (568+)'
+
+export default function About(props) {
+  const { name, image, price, reviews, rating, categories } = props.route.params
+const formattedCategories = categories.map((cat) => cat.title).join(' • ')
+const description = `${formattedCategories} ${
+  price ? ' • ' + price : ''
+} • 🎫 • ${rating} ⭐ (${reviews}+)`
   return (
     <View>
       <RestaurantImage image={image} />
-      <RestaurantTitle title={title} />
+      <RestaurantName name={name} />
       <RestaurantDescription description={description} />
     </View>
   )
@@ -18,7 +32,7 @@ export default function About() {
 const RestaurantImage = (props) => (
   <Image source={{ uri: props.image }} style={{ width: '100%', height: 180 }} />
 )
-const RestaurantTitle = (props) => (
+const RestaurantName = (props) => (
   <Text
     style={{
       fontSize: 30,
